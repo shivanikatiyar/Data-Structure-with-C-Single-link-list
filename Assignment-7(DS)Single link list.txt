@@ -1,0 +1,433 @@
+                           
+						    Assignment-7(DS)Single Link List
+					 ***********************************************
+					 
+Question.1:Create link list of node 5 of integer insert data in code not by user.
+	   
+	               [Program Code]
+#include<stdio.h>
+struct Node
+{
+ int data;
+ struct Node *next;
+};
+void push(struct Node** head,int new_data)
+{
+    struct Node* new_node=(struct Node*)malloc(sizeof(struct Node));
+    new_node->data=new_data;
+    new_node->next=(*head);
+    (*head)=new_node;
+}
+void create(struct Node *node)
+{
+   while (node!=NULL)
+   {
+       printf("\t%d",node->data);
+       node=node->next;
+   }
+}
+int main()
+{
+    struct Node* head=NULL;
+
+    push(&head,3);
+    push(&head,2);
+    push(&head,9);
+    push(&head,5);
+    push(&head,10);
+    printf("\n Created linked list is:");
+    create(head);
+    return 0;
+}
+OUTPUT:
+Created linked list is:        10      5       9       2       3	
+
+Question.2:Create link list insert data by user upto nodes user want.
+                       
+                    [Program Code]
+#include<stdio.h>
+void create();
+void dis();
+struct node
+{
+ int  data;
+ struct node *next;
+};
+struct node *head,*newnode,*temp;
+int main()
+{
+    create();
+     dis();
+}
+void create()
+{
+head=0;
+int choice;while(choice)
+{
+newnode=(struct node*)malloc(sizeof(struct node));
+printf("\nEnter the data:");
+scanf("%d",&newnode->data);
+newnode->next=0;
+
+if(head==0)
+{
+head=temp=newnode;
+}
+else
+{
+temp->next=newnode;
+temp=newnode;
+}
+printf("\nDo you want to continue(0,1):");
+scanf("%d",&choice);}}
+void dis()
+{
+temp=head;
+while(temp!=0)
+{
+    printf("\n%d",temp->data);
+    temp=temp->next;
+}
+}
+INPUT:
+Enter the data:6
+Do you want to continue(0,1):1
+Enter the data:8
+Do you want to continue(0,1):1
+Enter the data:90
+Do you want to continue(0,1):0
+OUTPUT:
+6
+8
+90	
+
+Question.3:
+
+        [Program Code]
+		
+#include<stdio.h>
+struct Node
+{
+int data;
+struct Node *next;
+};
+void push(struct Node** head_ref, int new_data)
+{
+	struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+	struct Node *last = *head_ref; 
+	new_node->data = new_data;
+	new_node->next = NULL;
+	if (*head_ref == NULL)
+	{
+	*head_ref = new_node;
+	return;
+	}
+	while(last->next != NULL)
+	{
+		last = last->next;
+	last->next = new_node;
+	}
+	return;
+}
+
+void create(struct Node *node)
+{
+while (node != NULL)
+{
+	printf(" %d ", node->data);
+	node = node->next;
+}
+}
+ int main()
+{
+
+struct Node* head = NULL;
+int a[]={9,0,4,5,6,7,0,0,6,4},n=10,i=0;
+for(i=0;i<n;i++)
+{
+push(&head, a[i]);
+}
+printf("\n Created Linked list is: ");
+create(head);
+return 0;
+}
+OUTPUT:
+Created Linked list is:  9  0  4  5  6  7  0  0  6  4
+		
+Question.4:
+    
+        [Program code]
+		
+#include<stdio.h>
+void create();
+void inse_head();
+void ins_last() ;
+void ins_speci();
+void del_head_node();
+void del_last_node();
+void speci_del();
+void dis();
+struct node
+{
+   int data,prevnode;
+   struct node *next;
+};
+struct node *newnode,*temp,*head,*nextnode;
+int pos,count=0,i=1;
+void main()
+{
+    int ch;
+    while(1)
+    {
+     printf("\n1.Create\n2.Insert new node at head(Beg)\n3.Insert new node at end\n4.Insert new node at specifies position \n5.Delete the head(Beg) node\n6.Delete the last node\n7.Delete the specifies position node\n8.Display");
+     printf("\nEnter your choice:");
+     scanf("%d",&ch);
+        switch(ch)
+        {
+       case 1:
+           create();
+           break;
+       case 2:
+            inse_head();
+            break;
+       case 3:
+            ins_last() ;
+            break;
+       case 4:
+            ins_speci();
+            break;
+       case 5:
+            del_head_node();
+            break;
+       case 6:
+             del_last_node();
+             break;
+       case 7:
+            speci_del();
+            break;
+       case 8:
+           dis();
+           break;
+       case 9:
+           exit(1);
+           break;
+        default :
+          printf("\ninvalid choice");
+        }
+    }
+}
+void create()
+{ int choice;
+    head=0;
+    while(choice)
+    {
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nEnter the data:");
+    scanf("%d",&newnode->data);
+    newnode->next=0;
+    count++;
+    if(head==0)
+    {
+        head=temp=newnode;
+    }
+    else
+    {
+        temp->next=newnode;
+        temp=newnode;
+    }
+    printf("\nDo you want to continue(0,1):");
+    scanf("%d",&choice);
+
+}
+}
+void inse_head()
+{
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nEnter data you want to insert:");
+    scanf("%d",&newnode->data);
+     newnode->next=head;
+     head=newnode;
+}
+ void ins_last()
+{
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nEnter data you want to insert:");
+     scanf("%d",&newnode->data);
+     newnode->next=0;
+     temp=head;
+     temp!=0;
+     while(temp->next!=0)
+     {
+      temp=temp->next;
+     }
+     temp->next=newnode;
+}
+void ins_speci()
+{
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nWhich position insert the element:");
+    scanf("%d",&pos);
+    if(pos>count)
+    {
+        printf("invalid position");
+    }
+    else
+    {
+        temp=head;
+        while(i<pos-1)
+        {
+            temp=temp->next;
+            i++;
+        }
+
+    }
+    printf("\nwhich element insert:");
+    scanf("%d",&newnode->data);
+    newnode->next=temp->next;
+    temp->next=newnode;
+}
+void del_head_node()
+{
+    struct node *temp;
+    temp=head;
+    head=head->next;
+    free(temp);
+}
+void del_last_node()
+{
+  struct node *prevnode;
+  temp=head;
+  while(temp->next!=0)
+  {
+      prevnode=temp;
+      temp=temp->next;
+  }
+  if(temp==head)
+  {
+      head=0;
+  }
+  else
+  {
+      prevnode->next=0;
+      free(temp);
+  }
+}
+void  speci_del()
+{
+    printf("\n Which position Delete the element:");
+    scanf("%d",&pos);
+    if(pos>count)
+    {
+        printf("invalid position");
+    }
+    else
+    {
+        temp=head;
+        while(i<pos-1)
+        {
+            temp=temp->next;
+            i++;
+        }
+        nextnode=temp->next;
+        temp->next=nextnode->next;
+        free(nextnode);
+    }
+}
+void dis()
+{
+    temp=head;
+    while(temp!=0)
+    {
+        printf(" %d",temp->data);
+        temp=temp->next;
+    }
+}
+
+INPUT AND OUTPUT:
+1.Create
+2.Insert new node at head(Beg)
+3.Insert new node at end
+4.Insert new node at specifies position
+5.Delete the head(Beg) node
+6.Delete the last node
+7.Delete the specifies position node
+8.Display
+Enter your choice:1
+
+Enter the data:4
+
+Do you want to continue(0,1):1
+
+Enter the data:6
+
+Do you want to continue(0,1):1
+
+Enter the data:45
+
+Do you want to continue(0,1):1
+
+Enter the data:8
+
+Do you want to continue(0,1):0
+
+1.Create
+2.Insert new node at head(Beg)
+3.Insert new node at end
+4.Insert new node at specifies position
+5.Delete the head(Beg) node
+6.Delete the last node
+7.Delete the specifies position node
+8.Display
+Enter your choice:8
+ 4 6 45 8
+1.Create
+2.Insert new node at head(Beg)
+3.Insert new node at end
+4.Insert new node at specifies position
+5.Delete the head(Beg) node
+6.Delete the last node
+7.Delete the specifies position node
+8.Display
+Enter your choice:2
+
+Enter data you want to insert:67
+
+1.Create
+2.Insert new node at head(Beg)
+3.Insert new node at end
+4.Insert new node at specifies position
+5.Delete the head(Beg) node
+6.Delete the last node
+7.Delete the specifies position node
+8.Display
+Enter your choice:8
+ 67 4 6 45 8
+1.Create
+2.Insert new node at head(Beg)
+3.Insert new node at end
+4.Insert new node at specifies position
+5.Delete the head(Beg) node
+6.Delete the last node
+7.Delete the specifies position node
+8.Display
+Enter your choice:6
+
+1.Create
+2.Insert new node at head(Beg)
+3.Insert new node at end
+4.Insert new node at specifies position
+5.Delete the head(Beg) node
+6.Delete the last node
+7.Delete the specifies position node
+8.Display
+Enter your choice:8
+ 67 4 6 45
+1.Create
+2.Insert new node at head(Beg)
+3.Insert new node at end
+4.Insert new node at specifies position
+5.Delete the head(Beg) node
+6.Delete the last node
+7.Delete the specifies position node
+8.Display
+Enter your choice:9		
